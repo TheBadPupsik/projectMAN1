@@ -21,12 +21,15 @@ function createArr() {
         arrLS.push(randomNumber);
     }
     successSp.innerHTML = "Масив створено!";
+    conclusion.innerHTML = arrLS.join(", ");
+    conclusion.style.display = "block";
+    inputsearch.style.display = "flex";
+
+    document.getElementById("searchInput").value = "";
 };
 
 buttonLS.addEventListener("click", function () {
     createArr();
-    conclusion.innerHTML = arrLS.join(", ");
-    inputsearch.style.display = "flex";
 });
 
 function resetInput() {
@@ -65,6 +68,10 @@ btnNext.addEventListener("click", function () {
     } else {
         inputContainer.style.display = "none";
         successSp.innerHTML = "Масив створено!";
+        conclusion.innerHTML = arrLS.join(", ");
+        conclusion.style.display = "block";
+        inputsearch.style.display = "flex";
+        document.getElementById("searchInput").value = "";
     }
 });
 
@@ -73,6 +80,19 @@ currentInput.addEventListener("keypress", function (event) {
         btnNext.click();
     }
 });
+
+document.getElementById("btnGo").addEventListener("click",function(e){
+    e.preventDefault();
+    let searchValue = document.getElementById("searchInput").value;
+
+    if(!searchValue) {
+        alert("Введить значення!");
+        return;
+    }
+    localStorage.setItem('arrLS', JSON.stringify(arrLS));
+    localStorage.setItem('searchValue', searchValue);
+    window.location.href = './src/assets/pages/resultPage.html';
+})
 
 
 
