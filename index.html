@@ -23,29 +23,49 @@
         <div class="mainInfo">
             <div class="cardInfomationSerach">
                 <p>
-
+                    Коли тільки починаєш вивчати мову програмування,буває складно зрозуміти, як працюють ті чи інші
+                    алгоритми,та
+                    в якому випадку їх краще використовувати.Який з них буде виконуватися швидше?Скількі ітерацій
+                    потрібно для виконання
+                    алгоритму?За допомогою цього сайту ви зможете зрозуміти різницю алгоритмів лінійного та бінарного
+                    пошуків.
                 </p>
             </div>
 
             <div class="cardInfomationSerach">
                 <div class="mainT">
-                    <h2>Лінійний пошук</h2>
+                    <h2>Порівняй алгоритми пошуків</h2>
                 </div>
 
                 <div class="otherT">
                     <button id="btnLS">Сгенурувати массив</button>
-                    <p>Массив:</p>
-                    <span id="numbers"> </span>
+                    <h4>або</h4>
+                    <button id="btnInput">Ввести свої дані</button>
+                </div>
+
+                <div id="inputContainer">
+                    <label id="inputLabel">Введіть 1-й елемент:</label>
+                    <input type="number" id="currentInput" placeholder="Введіть число">
+                    <button id="btnNext">Далі</button>
+                </div>
+
+                <span id="sucessSpan"></span>
+                <span id="numbers"> </span>
+
+                <div id="inputSearchValue">
+                    <label id="inputLabelSearch">Введіть значення елемента що шукаєте:</label>
+                    <input type="number" id="searchInput" placeholder="Введіть число">
+                    <a href="./src/assets/pages/resultPage.html">Порівняти</a>
                 </div>
             </div>
 
-            
+
 
         </div>
     </div>
 
     <footer>
-        <p>Сайт був создан двума студентами It Step College</p>
+        <p>Сайт був створенний двума студентами It Step College</p>
         <p>Кошкін Ренат</p>
         <p>Черкасов Павло</p>
     </footer>
