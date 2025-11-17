@@ -1,3 +1,4 @@
+
 const arrLSsize = 10;
 const arrLS = [];
 var conclusion = document.getElementById("numbers");

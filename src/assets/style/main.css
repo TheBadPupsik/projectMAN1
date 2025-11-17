@@ -61,7 +61,7 @@ header {
 
 .cardInfomationSerach {
     width: 100%;
-    height: 28%;
+    height: 31%;
     background-color: #f0f0f0;
     padding: 10px;
     border-radius: 5px;
@@ -69,9 +69,23 @@ header {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.cardInfomationSerach:first-child {
-    height: 9%;
+.cardInfomationSerach:nth-child(1) {
+    height: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.cardInfomationSerach:nth-child(1) * {
+    text-align: center;
+}
+
+.cardInfomationSerach:nth-child(2) {
+    height: 10%;
+}
+
+
 
 .cardInfomationSerach p {
     text-align: justify;
@@ -222,4 +236,3 @@ footer p {
     margin: 0 auto;
     margin-top: 8px;
 }
-
