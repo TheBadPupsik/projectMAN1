@@ -1,4 +1,3 @@
-
 const arrLSsize = 10;
 const arrLS = [];
 var conclusion = document.getElementById("numbers");
@@ -94,6 +93,3 @@ document.getElementById("btnGo").addEventListener("click",function(e){
     localStorage.setItem('searchValue', searchValue);
     window.location.href = './src/assets/pages/resultPage.html';
 })
-
-
-
