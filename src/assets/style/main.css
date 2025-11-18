@@ -109,11 +109,13 @@ header {
 }
 
 #btnLS:hover {
+    cursor: pointer;
     background-color: rgb(214, 224, 232);
     transform: scale(1.05);
 }
 
 #btnInput:hover {
+    cursor: pointer;
     background-color: rgb(214, 224, 232);
     transform: scale(1.05);
 }
