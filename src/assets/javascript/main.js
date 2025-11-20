@@ -1,4 +1,3 @@
-const arrLSsize = 10;
 const arrLS = [];
 var conclusion = document.getElementById("numbers");
 var buttonLS = document.getElementById("btnLS");
@@ -9,14 +8,20 @@ let btnNext = document.getElementById("btnNext");
 let inputContainer = document.getElementById("inputContainer");
 let currentInput = document.getElementById("currentInput");
 let inputLabel = document.getElementById("inputLabel");
-let inputsearch = document.getElementById("inputSearchValue")
+let inputsearch = document.getElementById("inputSearchValue");
+let arraySize = document.getElementById("arraySize");
+let styleCard = document.querySelector(".cardInfomationSerach:nth-child(3)")
+
+let currentIndex = 0;
 
 function createArr() {
     resetInput();
     inputContainer.style.display = "none";
     arrLS.length = 0;
 
-    for (let i = 0; i < arrLSsize; i++) {
+    const size = parseInt(arraySize.value);
+
+    for (let i = 0; i < size; i++) {
         const randomNumber = Math.floor(Math.random() * 100);
         arrLS.push(randomNumber);
     }
@@ -26,7 +31,8 @@ function createArr() {
     inputsearch.style.display = "flex";
 
     document.getElementById("searchInput").value = "";
-};
+    styleCard.style.height = "auto";
+}
 
 buttonLS.addEventListener("click", function () {
     createArr();
@@ -39,9 +45,30 @@ function resetInput() {
     updateInputLabel();
 }
 
+arraySize.addEventListener("change", function () {
+    arrLS.length = 0;
+    currentIndex = 0;
+
+    inputContainer.style.display = "none";
+    conclusion.style.display = "none";
+    inputsearch.style.display = "none";
+
+    successSp.innerHTML = "";
+    conclusion.innerHTML = "";
+    currentInput.value = "";
+    document.getElementById("searchInput").value = "";
+
+    if (styleCard) {
+        styleCard.style.height = "20%";
+    }
+
+    updateInputLabel();
+});
+
 function updateInputLabel() {
     const elementNumber = currentIndex + 1;
     inputLabel.textContent = `Введіть ${elementNumber}-й елемент:`;
+    styleCard.style.height = "auto";
 }
 
 btnInput.addEventListener("click", function () {
@@ -61,10 +88,13 @@ btnNext.addEventListener("click", function () {
     arrLS.push(currentInput.value);
     currentIndex++;
 
-    if (currentIndex < arrLSsize) {
+    const size = parseInt(arraySize.value);
+
+    if (currentIndex < size) {
         currentInput.value = "";
         currentInput.focus();
         updateInputLabel();
+
     } else {
         inputContainer.style.display = "none";
         successSp.innerHTML = "Масив створено!";
@@ -72,7 +102,9 @@ btnNext.addEventListener("click", function () {
         conclusion.style.display = "block";
         inputsearch.style.display = "flex";
         document.getElementById("searchInput").value = "";
+
     }
+
 });
 
 currentInput.addEventListener("keypress", function (event) {
@@ -81,15 +113,22 @@ currentInput.addEventListener("keypress", function (event) {
     }
 });
 
-document.getElementById("btnGo").addEventListener("click",function(e){
+document.getElementById("btnGo").addEventListener("click", function (e) {
     e.preventDefault();
     let searchValue = document.getElementById("searchInput").value;
 
-    if(!searchValue) {
+    if (!searchValue) {
         alert("Введить значення!");
         return;
     }
+
+    let searchNumber = parseInt(searchValue);
+    if (!arrLS.includes(searchNumber)) {
+        alert("Такого значення немає в масиві!");
+        return;
+    }
+
     localStorage.setItem('arrLS', JSON.stringify(arrLS));
     localStorage.setItem('searchValue', searchValue);
     window.location.href = './src/assets/pages/resultPage.html';
-})
+});
