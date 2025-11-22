@@ -85,7 +85,7 @@ btnNext.addEventListener("click", function () {
         return;
     }
 
-    arrLS.push(currentInput.value);
+    arrLS.push(parseInt(currentInput.value));
     currentIndex++;
 
     const size = parseInt(arraySize.value);
