@@ -75,27 +75,45 @@ function BinarySearch(arr, searchValue) {
         iterations: arr.length
     };
 }
+PrintYourArr();
+ const resultLinear = LinearSearch(arr, searchValue);
+ const resultBinary = BinarySearch(arr, searchValue);
 //тест график
     const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Лінійний пошук', 'Бінарний пошук'],
+            datasets: [
+                {
+                    label: 'Кількість ітерацій',
+                    data: [resultLinear.iterations, resultBinary.iterations],
+                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Кількість ітерацій'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Порівняння алгоритмів пошуку'
+                }
+            }
         }
-      }
-    }
-  });
+    });
 
 // const result = LinearSearch(arr, searchValue);
 // alert(`Найдено на позиции: ${result.index}`);
@@ -106,5 +124,3 @@ function BinarySearch(arr, searchValue) {
 // alert(`Найдено на позиции: ${result2.index}`);
 // alert(`Время выполнения: ${result2.time.toFixed(2)}`);
 // alert(`Количество итераций: ${result2.iterations}`);
-
-PrintYourArr();
