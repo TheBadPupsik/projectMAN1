@@ -1,24 +1,42 @@
 const arr = JSON.parse(localStorage.getItem('arrLS'));
 const searchValue = parseInt(localStorage.getItem('searchValue'));
-let yourArr = document.getElementById("numbers")
+let yourArr = document.getElementById("numbers");
+let sortArr = document.getElementById("numbersSorted");
 
 function PrintYourArr() {
     yourArr.style.display = "block";
     let output = "";
     for (let i = 0; i < arr.length; i++) {
-        if(arr[i] === searchValue) {
+        if (arr[i] === searchValue) {
             output += `<span style="color: red; font-weight: bold;">${arr[i]}</span>`;
         } else {
             output += arr[i];
         }
-        
-        if(i < arr.length - 1) {
+
+        if (i < arr.length - 1) {
             output += ", ";
         }
     }
-     yourArr.innerHTML = output;
+    yourArr.innerHTML = output;
 }
 
+function PrintYourSortedArr() {
+    sortArr.style.display = "block";
+    let output = "";
+    const sortedArr = [...arr].sort((a, b) => a - b);
+    for (let i = 0; i < sortedArr.length; i++) {
+        if (sortedArr[i] === searchValue) {
+            output += `<span style="color: red; font-weight: bold;">${sortedArr[i]}</span>`;
+        } else {
+            output += sortedArr[i];
+        }
+
+        if (i < sortedArr.length - 1) {
+            output += ", ";
+        }
+    }
+    sortArr.innerHTML = output;
+}
 
 function LinearSearch(arr, searchValue) {
     let start = performance.now();
@@ -26,7 +44,7 @@ function LinearSearch(arr, searchValue) {
     for (let i = 0; i < arr.length; i++) {
         iterations++;
         if (arr[i] === searchValue) {
-            let end = performance.now(); //время не работает
+            let end = performance.now();
             let time = end - start;
             return {
                 index: i,
@@ -75,52 +93,105 @@ function BinarySearch(arr, searchValue) {
         iterations: arr.length
     };
 }
-PrintYourArr();
- const resultLinear = LinearSearch(arr, searchValue);
- const resultBinary = BinarySearch(arr, searchValue);
-//тест график
-    const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Лінійний пошук', 'Бінарний пошук'],
-            datasets: [
-                {
-                    label: 'Кількість ітерацій',
-                    data: [resultLinear.iterations, resultBinary.iterations],
-                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
-                    borderWidth: 2
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Кількість ітерацій'
-                    }
-                }
-            },
-            plugins: {
+function measureSearchTime(searchFunc, arr, searchValue, runs = 10000) {
+    let totalTime = 0;
+    let result;
+    
+    for (let i = 0; i < runs; i++) {
+        const start = performance.now();
+        result = searchFunc(arr, searchValue);
+        const end = performance.now();
+        totalTime += (end - start);
+    }
+    
+    const avgTime = totalTime / runs;
+    
+    return {
+        index: result.index,
+        time: avgTime,
+        iterations: result.iterations
+    };
+}
+
+PrintYourArr();
+// const resultLinear = LinearSearch(arr, searchValue);
+const sortedArr = [...arr].sort((a, b) => a - b);
+PrintYourSortedArr();
+// const resultBinary = BinarySearch(sortedArr, searchValue);
+
+const resultLinear = measureSearchTime(LinearSearch, arr, searchValue);
+const resultBinary = measureSearchTime(BinarySearch, sortedArr, searchValue);
+
+const ctx = document.getElementById('iterationsChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Лінійний пошук', 'Бінарний пошук'],
+        datasets: [
+            {
+                label: 'Кількість ітерацій',
+                data: [resultLinear.iterations, resultBinary.iterations],
+                backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                borderWidth: 2
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Порівняння алгоритмів пошуку'
+                    text: 'Кількість ітерацій'
                 }
             }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Порівняння ітерацій'
+            }
         }
-    });
+    }
+});
 
-// const result = LinearSearch(arr, searchValue);
-// alert(`Найдено на позиции: ${result.index}`);
-// alert(`Время выполнения: ${result.time.toFixed(2)}`);
-// alert(`Количество итераций: ${result.iterations}`);
+const ctx2 = document.getElementById('timeChart');
 
-// const result2 = BinarySearch(arr, searchValue);
-// alert(`Найдено на позиции: ${result2.index}`);
-// alert(`Время выполнения: ${result2.time.toFixed(2)}`);
-// alert(`Количество итераций: ${result2.iterations}`);
+const timeLinearMicro = (resultLinear.time * 1000).toFixed(3);
+const timeBinaryMicro = (resultBinary.time * 1000).toFixed(3);
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ['Лінійний пошук', 'Бінарний пошук'],
+        datasets: [{
+            label: 'Час виконання (мкс)',
+            data: [timeLinearMicro, timeBinaryMicro],
+            backgroundColor: ['rgba(255, 159, 64, 0.6)', 'rgba(75, 192, 192, 0.6)'],
+            borderColor: ['rgba(255, 159, 64, 1)', 'rgba(75, 192, 192, 1)'],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Час (мікросекунди)'
+                }
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Порівняння часу виконання'
+            },
+        }
+    }
+});
