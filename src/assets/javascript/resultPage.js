@@ -6,9 +6,11 @@ let sortArr = document.getElementById("numbersSorted");
 function PrintYourArr() {
     yourArr.style.display = "block";
     let output = "";
+    let count = 0;
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === searchValue) {
+        if (arr[i] === searchValue && count === 0) {
             output += `<span style="color: red; font-weight: bold;">${arr[i]}</span>`;
+            count++;
         } else {
             output += arr[i];
         }
@@ -24,9 +26,11 @@ function PrintYourSortedArr() {
     sortArr.style.display = "block";
     let output = "";
     const sortedArr = [...arr].sort((a, b) => a - b);
+    let count = 0;
     for (let i = 0; i < sortedArr.length; i++) {
-        if (sortedArr[i] === searchValue) {
+        if (sortedArr[i] === searchValue  && count === 0) {
             output += `<span style="color: red; font-weight: bold;">${sortedArr[i]}</span>`;
+            count++;
         } else {
             output += sortedArr[i];
         }
@@ -151,7 +155,7 @@ new Chart(ctx, {
             title: {
                 display: true,
                 text: 'Порівняння ітерацій',
-                font: { size: 16, weight: 'bold' }
+                font: { size: 14, weight: 'bold' }
             }
         }
     }
@@ -189,7 +193,7 @@ new Chart(ctx2, {
             title: {
                 display: true,
                 text: 'Порівняння часу виконання(середнє з 10 000 запусків)',
-                font: { size: 16, weight: 'bold' }
+                font: { size: 14, weight: 'bold' }
             },
         }
     }
@@ -226,7 +230,7 @@ new Chart(ctx5, {
             title: {
                 display: true,
                 text: 'Відсоткове співвідношення ітерацій',
-                font: { size: 16, weight: 'bold' }
+                font: { size: 14, weight: 'bold' }
             },
             tooltip: {
                 callbacks: {
