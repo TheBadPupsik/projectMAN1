@@ -13,3 +13,36 @@
     flex-direction: column;
     text-align: center;
 }
+
+.containerForCharts {
+    width: 96%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+#iterationsChart {
+    width: 90% !important;
+    height: 240px !important;
+}
+
+#timeChart {
+    width: 90% !important;
+    height: 240px !important;
+}
+
+.returnBtn {
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 16px;
+    text-align: center;
+    border: 1px solid rgb(225, 120, 120);
+    border-radius: 5%;
+    padding: 4px;
+    background-color: rgb(254, 202, 197);
+    color: rgb(255, 89, 89);
+}

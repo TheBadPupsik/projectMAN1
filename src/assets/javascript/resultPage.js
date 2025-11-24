@@ -97,16 +97,16 @@ function BinarySearch(arr, searchValue) {
 function measureSearchTime(searchFunc, arr, searchValue, runs = 10000) {
     let totalTime = 0;
     let result;
-    
+
     for (let i = 0; i < runs; i++) {
         const start = performance.now();
         result = searchFunc(arr, searchValue);
         const end = performance.now();
         totalTime += (end - start);
     }
-    
+
     const avgTime = totalTime / runs;
-    
+
     return {
         index: result.index,
         time: avgTime,
@@ -115,11 +115,8 @@ function measureSearchTime(searchFunc, arr, searchValue, runs = 10000) {
 }
 
 PrintYourArr();
-// const resultLinear = LinearSearch(arr, searchValue);
 const sortedArr = [...arr].sort((a, b) => a - b);
 PrintYourSortedArr();
-// const resultBinary = BinarySearch(sortedArr, searchValue);
-
 const resultLinear = measureSearchTime(LinearSearch, arr, searchValue);
 const resultBinary = measureSearchTime(BinarySearch, sortedArr, searchValue);
 
@@ -153,7 +150,8 @@ new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Порівняння ітерацій'
+                text: 'Порівняння ітерацій',
+                font: { size: 16, weight: 'bold' }
             }
         }
     }
@@ -190,8 +188,53 @@ new Chart(ctx2, {
         plugins: {
             title: {
                 display: true,
-                text: 'Порівняння часу виконання'
+                text: 'Порівняння часу виконання(середнє з 10 000 запусків)',
+                font: { size: 16, weight: 'bold' }
             },
+        }
+    }
+});
+
+const ctx5 = document.getElementById('pieChart');
+
+const totalIterations = resultLinear.iterations + resultBinary.iterations;
+
+new Chart(ctx5, {
+    type: 'pie',
+    data: {
+        labels: ['Лінійний пошук', 'Бінарний пошук'],
+        datasets: [{
+            data: [
+                ((resultLinear.iterations / totalIterations) * 100).toFixed(1),
+                ((resultBinary.iterations / totalIterations) * 100).toFixed(1)
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Відсоткове співвідношення ітерацій',
+                font: { size: 16, weight: 'bold' }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function (context) {
+                        return `${context.label}: ${context.parsed}%`;
+                    }
+                }
+            }
         }
     }
 });
