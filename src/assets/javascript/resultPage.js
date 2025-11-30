@@ -9,7 +9,7 @@ function PrintYourArr() {
     let count = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === searchValue && count === 0) {
-            output += `<span style="color: red; font-weight: bold;">${arr[i]}</span>`;
+            output += `<span style="color:   #008ADF; font-weight: bold;">${arr[i]}</span>`;
             count++;
         } else {
             output += arr[i];
@@ -29,7 +29,7 @@ function PrintYourSortedArr() {
     let count = 0;
     for (let i = 0; i < sortedArr.length; i++) {
         if (sortedArr[i] === searchValue  && count === 0) {
-            output += `<span style="color: red; font-weight: bold;">${sortedArr[i]}</span>`;
+            output += `<span style="color: #008ADF; font-weight: bold;">${sortedArr[i]}</span>`;
             count++;
         } else {
             output += sortedArr[i];
@@ -123,6 +123,13 @@ const sortedArr = [...arr].sort((a, b) => a - b);
 PrintYourSortedArr();
 const resultLinear = measureSearchTime(LinearSearch, arr, searchValue);
 const resultBinary = measureSearchTime(BinarySearch, sortedArr, searchValue);
+
+Chart.defaults.color = 'white';
+Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
+Chart.defaults.plugins.legend.labels.color = 'white';
+Chart.defaults.plugins.title.color = 'white';
+Chart.defaults.scale.ticks.color = 'white';
+Chart.defaults.scale.grid.color = 'rgba(255, 255, 255, 0.1)';
 
 const ctx = document.getElementById('iterationsChart');
 
