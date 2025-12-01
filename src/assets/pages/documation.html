@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/mainD.css">
-    <title>Search Algorithms</title>
+    <title>Документація - Search Algorithms</title>
 </head>
 
 <body>
@@ -15,13 +15,256 @@
             <h1>Search Algorithms</h1>
             <div class="headSiteChoice">
                 <a href="../../../index.html">Головна сторінка</a>
-                <a href="#">Документація про пошуки</a>
+                <a href="#">Докумінтація про пошуки</a>
             </div>
         </div>
     </header>
 
     <div class="wrapper">
         <div class="mainInfo">
+
+            <div class="cardInfomationSerach">
+                <h2 class="doc-title">Документація про алгоритми пошуку</h2>
+                <p class="doc-intro">
+                    Алгоритми пошуку — це методи знаходження конкретного елемента в наборі даних. 
+                    На цій сторінці ви дізнаєтесь про два основні алгоритми: лінійний та бінарний пошук.
+                </p>
+            </div>
+
+            <div class="cardInfomationSerach">
+                <h2 class="section-title">Лінійний пошук (Linear Search)</h2>
+                
+                <h3 class="subsection-title">Що це таке?</h3>
+                <p>
+                    Лінійний пошук — це найпростіший алгоритм пошуку. Він перевіряє кожен елемент масиву 
+                    послідовно, доки не знайде потрібне значення або не досягне кінця масиву.
+                </p>
+
+                <h3 class="subsection-title">Як це працює?</h3>
+                <ol class="doc-list">
+                    <li>Починаємо з першого елемента масиву</li>
+                    <li>Порівнюємо поточний елемент з шуканим значенням</li>
+                    <li>Якщо знайдено — повертаємо позицію елемента</li>
+                    <li>Якщо ні — переходимо до наступного елемента</li>
+                    <li>Повторюємо, доки не знайдемо або не перевіримо всі елементи</li>
+                </ol>
+
+                <h3 class="subsection-title">Приклад роботи:</h3>
+                <div class="example-box">
+                    <p><strong>Масив:</strong> [5, 12, 8, 130, 44, 23, 67]</p>
+                    <p><strong>Шукаємо:</strong> 44</p>
+                    <br>
+                    <p>Крок 1: Перевіряємо 5 ≠ 44</p>
+                    <p>Крок 2: Перевіряємо 12 ≠ 44</p>
+                    <p>Крок 3: Перевіряємо 8 ≠ 44</p>
+                    <p>Крок 4: Перевіряємо 130 ≠ 44</p>
+                    <p>Крок 5: Перевіряємо 44 = 44 ✓ <strong>Знайдено на позиції 4!</strong></p>
+                </div>
+
+                <h3 class="subsection-title">Переваги:</h3>
+                <ul class="doc-list">
+                    <li>Простий у реалізації та розумінні</li>
+                    <li>Працює з несортованими масивами</li>
+                    <li>Не потребує додаткової пам'яті</li>
+                    <li>Підходить для малих наборів даних</li>
+                </ul>
+
+                <h3 class="subsection-title">Недоліки:</h3>
+                <ul class="doc-list">
+                    <li>Повільний для великих масивів</li>
+                    <li>У найгіршому випадку перевіряє всі елементи</li>
+                    <li>Неефективний для частих пошуків</li>
+                </ul>
+
+                <h3 class="subsection-title">Складність алгоритму:</h3>
+                <ul class="doc-list">
+                    <li><strong>Найкращий випадок:</strong> O(1) — елемент знайдено на першій позиції</li>
+                    <li><strong>Середній випадок:</strong> O(n/2) — елемент десь посередині</li>
+                    <li><strong>Найгірший випадок:</strong> O(n) — елемент в кінці або відсутній</li>
+                </ul>
+            </div>
+
+            <div class="cardInfomationSerach">
+                <h2 class="section-title">Бінарний пошук (Binary Search)</h2>
+                
+                <h3 class="subsection-title">Що це таке?</h3>
+                <p>
+                    Бінарний пошук — це ефективний алгоритм пошуку в <strong>відсортованому масиві</strong>. 
+                    Він працює за принципом "розділяй і володарюй", щоразу зменшуючи область пошуку вдвічі.
+                </p>
+
+                <h3 class="subsection-title">Як це працює?</h3>
+                <ol class="doc-list">
+                    <li>Знаходимо середній елемент масиву</li>
+                    <li>Порівнюємо його з шуканим значенням</li>
+                    <li>Якщо знайдено — повертаємо позицію</li>
+                    <li>Якщо шукане значення менше — шукаємо в лівій половині</li>
+                    <li>Якщо більше — шукаємо в правій половині</li>
+                    <li>Повторюємо, доки не знайдемо або область пошуку не стане порожньою</li>
+                </ol>
+
+                <h3 class="subsection-title">Приклад роботи:</h3>
+                <div class="example-box">
+                    <p><strong>Відсортований масив:</strong> [3, 8, 12, 23, 44, 67, 130]</p>
+                    <p><strong>Шукаємо:</strong> 67</p>
+                    <br>
+                    <p>Крок 1: Перевіряємо середній елемент [3, 8, 12, <span class="highlight-text">23</span>, 44, 67, 130]</p>
+                    <p>23 < 67, тому шукаємо в правій частині</p>
+                    <br>
+                    <p>Крок 2: Перевіряємо середній елемент [44, <span class="highlight-text">67</span>, 130]</p>
+                    <p>67 = 67 <strong>Знайдено на позиції 5!</strong></p>
+                </div>
+
+                <h3 class="subsection-title">Переваги:</h3>
+                <ul class="doc-list">
+                    <li>Дуже швидкий для великих масивів</li>
+                    <li>Ефективний — перевіряє значно менше елементів</li>
+                    <li>Логарифмічна складність O(log n)</li>
+                    <li>Ідеальний для частих пошуків</li>
+                </ul>
+
+                <h3 class="subsection-title">Недоліки:</h3>
+                <ul class="doc-list">
+                    <li>Працює ТІЛЬКИ з відсортованими масивами</li>
+                    <li>Потребує попереднього сортування даних</li>
+                    <li>Складніший в реалізації</li>
+                </ul>
+
+                <h3 class="subsection-title">Складність алгоритму:</h3>
+                <ul class="doc-list">
+                    <li><strong>Найкращий випадок:</strong> O(1) — елемент знайдено в центрі</li>
+                    <li><strong>Середній випадок:</strong> O(log n)</li>
+                    <li><strong>Найгірший випадок:</strong> O(log n)</li>
+                </ul>
+            </div>
+
+            <div class="cardInfomationSerach">
+                <h2 class="section-title">Порівняння алгоритмів</h2>
+                
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Критерій</th>
+                                <th>Лінійний пошук</th>
+                                <th>Бінарний пошук</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Складність</strong></td>
+                                <td>O(n)</td>
+                                <td>O(log n)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Потребує сортування</strong></td>
+                                <td>Ні</td>
+                                <td>Так</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Тип масиву</strong></td>
+                                <td>Будь-який</td>
+                                <td>Тільки відсортований</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Швидкість (100 елементів)</strong></td>
+                                <td>~50 перевірок</td>
+                                <td>~7 перевірок</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Швидкість (1000 елементів)</strong></td>
+                                <td>~500 перевірок</td>
+                                <td>~10 перевірок</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Швидкість (1 млн елементів)</strong></td>
+                                <td>~500,000 перевірок</td>
+                                <td>~20 перевірок</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Складність реалізації</strong></td>
+                                <td>Проста</td>
+                                <td>Середня</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="subsection-title">Візуалізація швидкості:</h3>
+                <div class="speed-comparison">
+                    <div class="speed-bar">
+                        <p><strong>Лінійний пошук (1000 елементів):</strong></p>
+                        <div class="bar linear-bar">~500 перевірок</div>
+                    </div>
+                    <div class="speed-bar">
+                        <p><strong>Бінарний пошук (1000 елементів):</strong></p>
+                        <div class="bar binary-bar">~10 перевірок</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cardInfomationSerach">
+                <h2 class="section-title">Коли що використовувати?</h2>
+                
+                <div class="use-cases">
+                    <div class="use-case">
+                        <h3>Використовуйте Лінійний пошук:</h3>
+                        <ul class="doc-list">
+                            <li>Масив невеликий (менше 100 елементів)</li>
+                            <li>Дані НЕ відсортовані і сортувати їх дорого</li>
+                            <li>Потрібна проста та зрозуміла реалізація</li>
+                            <li>Пошук виконується рідко (1-2 рази)</li>
+                            <li>Дані постійно змінюються</li>
+                        </ul>
+                    </div>
+
+                    <div class="use-case">
+                        <h3>Використовуйте Бінарний пошук:</h3>
+                        <ul class="doc-list">
+                            <li>Масив великий (більше 100 елементів)</li>
+                            <li>Дані вже відсортовані</li>
+                            <li>Потрібна максимальна швидкість</li>
+                            <li>Пошук виконується часто (багато разів)</li>
+                            <li>Дані відносно стабільні</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Практичні приклади:</h3>
+                <div class="practical-examples">
+                    <div class="example-item">
+                        <h4>Лінійний пошук:</h4>
+                        <ul class="doc-list">
+                            <li>Пошук контакту в телефонній книзі (якщо несортована)</li>
+                            <li>Перевірка наявності елемента в невеликому списку</li>
+                            <li>Пошук в історії браузера</li>
+                        </ul>
+                    </div>
+                    <div class="example-item">
+                        <h4>Бінарний пошук:</h4>
+                        <ul class="doc-list">
+                            <li>Пошук слова в словнику</li>
+                            <li>Пошук в базі даних (з індексами)</li>
+                            <li>Автодоповнення при введенні тексту</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cardInfomationSerach conclusion">
+                <h2 class="section-title">Висновок</h2>
+                <p>
+                    Обидва алгоритми пошуку мають своє важливе призначення в програмуванні:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Лінійний пошук</strong> — простий, універсальний та надійний. Відмінний вибір для малих масивів та несортованих даних.</li>
+                    <li><strong>Бінарний пошук</strong> — надзвичайно швидкий та ефективний, але вимагає відсортованих даних. Незамінний для великих обсягів інформації.</li>
+                </ul>
+                <p class="final-note">
+                    <strong>Порада:</strong> Перейдіть на головну сторінку та спробуйте обидва алгоритми в дії! 
+                    Ви побачите різницю в швидкості та кількості кроків для знаходження елемента.
+                </p>    
+            </div>
 
         </div>
     </div>
@@ -31,8 +274,6 @@
         <p>Кошкін Ренат</p>
         <p>Черкасов Павло</p>
     </footer>
-
-    <script src="./src/assets/javascript/main.js"></script>
 </body>
 
 </html>
