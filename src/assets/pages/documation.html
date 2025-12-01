@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/mainD.css">
+    <link rel="icon" href="../img/icon.png" type="image/x-icon">
     <title>Документація - Search Algorithms</title>
 </head>
 
@@ -14,8 +15,10 @@
         <div class="headSite">
             <h1>Search Algorithms</h1>
             <div class="headSiteChoice">
-                <a href="../../../index.html">Головна сторінка</a>
-                <a href="#">Докумінтація про пошуки</a>
+                <nav>
+                    <a href="../../../index.html">Головна сторінка</a>
+                    <a href="#">Докумінтація про пошуки</a>
+                </nav>
             </div>
         </div>
     </header>
@@ -75,13 +78,6 @@
                     <li>У найгіршому випадку перевіряє всі елементи</li>
                     <li>Неефективний для частих пошуків</li>
                 </ul>
-
-                <h3 class="subsection-title">Складність алгоритму:</h3>
-                <ul class="doc-list">
-                    <li><strong>Найкращий випадок:</strong> O(1) — елемент знайдено на першій позиції</li>
-                    <li><strong>Середній випадок:</strong> O(n/2) — елемент десь посередині</li>
-                    <li><strong>Найгірший випадок:</strong> O(n) — елемент в кінці або відсутній</li>
-                </ul>
             </div>
 
             <div class="cardInfomationSerach">
@@ -131,13 +127,6 @@
                     <li>Потребує попереднього сортування даних</li>
                     <li>Складніший в реалізації</li>
                 </ul>
-
-                <h3 class="subsection-title">Складність алгоритму:</h3>
-                <ul class="doc-list">
-                    <li><strong>Найкращий випадок:</strong> O(1) — елемент знайдено в центрі</li>
-                    <li><strong>Середній випадок:</strong> O(log n)</li>
-                    <li><strong>Найгірший випадок:</strong> O(log n)</li>
-                </ul>
             </div>
 
             <div class="cardInfomationSerach">
@@ -153,11 +142,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Складність</strong></td>
-                                <td>O(n)</td>
-                                <td>O(log n)</td>
-                            </tr>
                             <tr>
                                 <td><strong>Потребує сортування</strong></td>
                                 <td>Ні</td>
